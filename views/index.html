@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acceso | Sistema de Gestión</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --ink: #172033;
+        --muted: #687386;
+        --line: #dfe4eb;
+        --orange: #f28c28;
+        --orange-dark: #cf6912;
+        --surface: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 24px;
+        color: var(--ink);
+        background: #eef2f4;
+        background-image: radial-gradient(#c9d4d7 1px, transparent 1px), linear-gradient(135deg, #f8faf9, #e7edef);
+        background-size: 22px 22px, 100% 100%;
+      }
+
+      .login-container {
+        width: min(100%, 430px);
+        padding: 42px 44px 40px;
+        border: 1px solid rgba(255, 255, 255, 0.85);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: 0 24px 60px rgba(29, 47, 61, 0.16), 0 3px 8px rgba(29, 47, 61, 0.06);
+        text-align: left;
+        animation: appear 500ms ease-out both;
+      }
+
+      .login-container img {
+        display: block;
+        width: 86px;
+        height: 86px;
+        object-fit: contain;
+        margin: 0 auto 25px;
+        border-radius: 16px;
+      }
+
+      h2 {
+        margin: 0;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 30px;
+        letter-spacing: 0;
+        text-align: center;
+      }
+
+      .intro {
+        margin: 9px 0 30px;
+        color: var(--muted);
+        font-size: 15px;
+        text-align: center;
+      }
+
+      .form-group {
+        margin-bottom: 19px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: #303b4d;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 14px 15px;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        outline: none;
+        color: var(--ink);
+        background: #fbfcfd;
+        font: inherit;
+        transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+      }
+
+      input::placeholder {
+        color: #a1a9b5;
+      }
+
+      input:focus {
+        border-color: var(--orange);
+        background: var(--surface);
+        box-shadow: 0 0 0 4px rgba(242, 140, 40, 0.15);
+      }
+
+      button {
+        width: 100%;
+        padding: 14px;
+        margin-top: 7px;
+        border: none;
+        border-radius: 9px;
+        background: var(--orange);
+        color: white;
+        cursor: pointer;
+        font: 700 16px "DM Sans", sans-serif;
+        transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+      }
+
+      button:hover {
+        background: var(--orange-dark);
+        box-shadow: 0 8px 18px rgba(207, 105, 18, 0.24);
+        transform: translateY(-1px);
+      }
+
+      button:active {
+        transform: translateY(0);
+      }
+
+      @keyframes appear {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @media (max-width: 480px) {
+        body {
+          padding: 16px;
+        }
+
+        .login-container {
+          padding: 34px 24px 30px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <img src="https://app-super-chida.s3.us-east-1.amazonaws.com/1.png" alt="Logo S3" />
+      <h2>Iniciar Sesión</h2>
+      <p class="intro">Accede a tu panel de gestión</p>
+      <form action="/auth/login" method="POST">
+        <div class="form-group">
+          <label for="usuario">Usuario:</label>
+          <input type="text" id="usuario" name="user" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Contraseña:</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <button type="submit">Entrar</button>
+      </form>
+    </div>
+  </body>
+</html>
