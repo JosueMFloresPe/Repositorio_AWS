@@ -6,7 +6,10 @@
     <title>Acceso | Sistema de Gestión</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
         --ink: #172033;
@@ -31,8 +34,12 @@
         padding: 24px;
         color: var(--ink);
         background: #eef2f4;
-        background-image: radial-gradient(#c9d4d7 1px, transparent 1px), linear-gradient(135deg, #f8faf9, #e7edef);
-        background-size: 22px 22px, 100% 100%;
+        background-image:
+          radial-gradient(#c9d4d7 1px, transparent 1px),
+          linear-gradient(135deg, #f8faf9, #e7edef);
+        background-size:
+          22px 22px,
+          100% 100%;
       }
 
       .login-container {
@@ -41,7 +48,9 @@
         border: 1px solid rgba(255, 255, 255, 0.85);
         border-radius: 18px;
         background: rgba(255, 255, 255, 0.94);
-        box-shadow: 0 24px 60px rgba(29, 47, 61, 0.16), 0 3px 8px rgba(29, 47, 61, 0.06);
+        box-shadow:
+          0 24px 60px rgba(29, 47, 61, 0.16),
+          0 3px 8px rgba(29, 47, 61, 0.06);
         text-align: left;
         animation: appear 500ms ease-out both;
       }
@@ -92,7 +101,10 @@
         color: var(--ink);
         background: #fbfcfd;
         font: inherit;
-        transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+        transition:
+          border-color 180ms ease,
+          box-shadow 180ms ease,
+          background 180ms ease;
       }
 
       input::placeholder {
@@ -114,8 +126,13 @@
         background: var(--orange);
         color: white;
         cursor: pointer;
-        font: 700 16px "DM Sans", sans-serif;
-        transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+        font:
+          700 16px "DM Sans",
+          sans-serif;
+        transition:
+          transform 180ms ease,
+          background 180ms ease,
+          box-shadow 180ms ease;
       }
 
       button:hover {
@@ -129,8 +146,14 @@
       }
 
       @keyframes appear {
-        from { opacity: 0; transform: translateY(12px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       @media (max-width: 480px) {
@@ -146,7 +169,10 @@
   </head>
   <body>
     <div class="login-container">
-      <img src="https://app-super-chida.s3.us-east-1.amazonaws.com/1.png" alt="Logo S3" />
+      <img
+        src="https://app-super-chida.s3.us-east-1.amazonaws.com/1.png"
+        alt="Logo S3"
+      />
       <h2>Iniciar Sesión</h2>
       <p class="intro">Accede a tu panel de gestión</p>
       <form action="/auth/login" method="POST">

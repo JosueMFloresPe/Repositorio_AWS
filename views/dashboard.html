@@ -6,7 +6,10 @@
     <title>Dashboard | Módulo de Cobros</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
       :root {
         --ink: #172033;
@@ -29,8 +32,12 @@
         color: var(--ink);
         font-family: "DM Sans", sans-serif;
         background: #eef2f4;
-        background-image: radial-gradient(#c9d4d7 1px, transparent 1px), linear-gradient(135deg, #f8faf9, #e7edef);
-        background-size: 22px 22px, 100% 100%;
+        background-image:
+          radial-gradient(#c9d4d7 1px, transparent 1px),
+          linear-gradient(135deg, #f8faf9, #e7edef);
+        background-size:
+          22px 22px,
+          100% 100%;
       }
 
       .page {
@@ -91,7 +98,9 @@
         background: var(--orange);
         font-size: 14px;
         font-weight: 700;
-        transition: background 180ms ease, transform 180ms ease;
+        transition:
+          background 180ms ease,
+          transform 180ms ease;
       }
 
       .logout:hover {
@@ -119,6 +128,116 @@
         margin: 7px 0 24px;
         color: var(--muted);
         font-size: 14px;
+      }
+
+      .toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 18px;
+      }
+
+      .search {
+        width: min(100%, 300px);
+        padding: 11px 14px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        outline: none;
+        color: var(--ink);
+        background: #fbfcfd;
+        font: inherit;
+      }
+
+      .search:focus,
+      .field input:focus {
+        border-color: var(--orange);
+        box-shadow: 0 0 0 4px rgba(242, 140, 40, 0.14);
+      }
+
+      .primary-button,
+      .secondary-button,
+      .action-button {
+        border: 0;
+        border-radius: 8px;
+        cursor: pointer;
+        font: 700 14px "DM Sans", sans-serif;
+      }
+
+      .primary-button {
+        padding: 12px 18px;
+        color: white;
+        background: var(--orange);
+      }
+
+      .secondary-button {
+        padding: 12px 18px;
+        color: var(--ink);
+        background: #e9eef0;
+      }
+
+      .form-panel {
+        display: none;
+        margin-bottom: 24px;
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: #f8faf9;
+      }
+
+      .form-panel.visible {
+        display: block;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+      .field label {
+        display: block;
+        margin-bottom: 6px;
+        color: #303b4d;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .field input {
+        width: 100%;
+        padding: 11px 12px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        outline: none;
+        font: inherit;
+      }
+
+      .form-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .action-button {
+        padding: 8px 11px;
+        color: var(--ink);
+        background: #e9eef0;
+      }
+
+      .action-button.delete {
+        color: var(--red);
+        background: #f9e9e8;
+      }
+
+      .empty-state,
+      .message {
+        padding: 24px;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      .message.error {
+        color: var(--red);
       }
 
       .table-wrapper {
@@ -188,8 +307,14 @@
       }
 
       @keyframes appear {
-        from { opacity: 0; transform: translateY(12px); }
-        to { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       @media (max-width: 640px) {
@@ -211,6 +336,22 @@
         .card {
           padding: 22px 18px;
         }
+
+        .toolbar,
+        .form-actions {
+          align-items: stretch;
+          flex-direction: column;
+        }
+
+        .search,
+        .primary-button,
+        .secondary-button {
+          width: 100%;
+        }
+
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
       }
     </style>
   </head>
@@ -224,40 +365,185 @@
             <p>Módulo de cobros</p>
           </div>
         </div>
-      <a href="/" class="logout">Cerrar Sesión</a>
+        <a href="/" class="logout">Cerrar Sesión</a>
       </div>
 
       <section class="card">
-        <h2>Registros Recientes</h2>
-        <p><i>Nota: Estos datos provendrán de AWS RDS próximamente.</i></p>
+        <div class="toolbar">
+          <div>
+            <h2>Directorio de Clientes</h2>
+            <p>Administra los clientes registrados en el sistema.</p>
+          </div>
+          <button class="primary-button" id="new-client" type="button">+ Nuevo cliente</button>
+        </div>
+
+        <form class="form-panel" id="client-form">
+          <div class="form-grid">
+            <div class="field">
+              <label for="nombre">Nombre</label>
+              <input id="nombre" name="nombre" required />
+            </div>
+            <div class="field">
+              <label for="email">Correo electrónico</label>
+              <input id="email" name="email" type="email" required />
+            </div>
+            <div class="field">
+              <label for="telefono">Teléfono</label>
+              <input id="telefono" name="telefono" required />
+            </div>
+            <div class="field">
+              <label for="direccion">Dirección</label>
+              <input id="direccion" name="direccion" required />
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="primary-button" type="submit">Guardar cliente</button>
+            <button class="secondary-button" id="cancel-form" type="button">Cancelar</button>
+          </div>
+        </form>
+
+        <div class="toolbar">
+          <input class="search" id="search" type="search" placeholder="Buscar cliente..." />
+        </div>
 
         <div class="table-wrapper">
           <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Cliente</th>
-            <th>Estado</th>
-            <th>Monto</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>001</td>
-            <td>Empresa Alpha S.A.C.</td>
-            <td><span class="status paid">Pagado</span></td>
-            <td>$1,500.00</td>
-          </tr>
-          <tr>
-            <td>002</td>
-            <td>Distribuidora Beta</td>
-            <td><span class="status pending">Pendiente</span></td>
-            <td>$850.00</td>
-          </tr>
-        </tbody>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="client-list"><tr><td class="message" colspan="6">Cargando clientes...</td></tr></tbody>
           </table>
         </div>
       </section>
     </main>
+    <script>
+      const form = document.getElementById("client-form");
+      const clientList = document.getElementById("client-list");
+      const search = document.getElementById("search");
+      let clients = [];
+      let editingId = null;
+
+      const escapeHtml = (value) => String(value ?? "").replace(/[&<>'"]/g, (character) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "'": "&#39;",
+        '"': "&quot;",
+      })[character]);
+
+      const showMessage = (text, error = false) => {
+        clientList.innerHTML = `<tr><td class="message${error ? " error" : ""}" colspan="6">${text}</td></tr>`;
+      };
+
+      const renderClients = () => {
+        const term = search.value.toLowerCase();
+        const filtered = clients.filter((client) =>
+          [client.nombre, client.email, client.telefono, client.direccion]
+            .some((value) => String(value).toLowerCase().includes(term)),
+        );
+
+        if (filtered.length === 0) {
+          showMessage("No hay clientes que mostrar.");
+          return;
+        }
+
+        clientList.innerHTML = filtered.map((client) => `
+          <tr>
+            <td>${escapeHtml(client.id)}</td>
+            <td>${escapeHtml(client.nombre)}</td>
+            <td>${escapeHtml(client.email)}</td>
+            <td>${escapeHtml(client.telefono)}</td>
+            <td>${escapeHtml(client.direccion)}</td>
+            <td>
+              <button class="action-button" type="button" data-edit="${client.id}">Editar</button>
+              <button class="action-button delete" type="button" data-delete="${client.id}">Eliminar</button>
+            </td>
+          </tr>
+        `).join("");
+      };
+
+      const loadClients = async () => {
+        try {
+          const response = await fetch("/api/clientes");
+          if (!response.ok) throw new Error();
+          clients = await response.json();
+          renderClients();
+        } catch (error) {
+          showMessage("No se pudieron cargar los clientes. Revisa la conexión con PostgreSQL.", true);
+        }
+      };
+
+      const resetForm = () => {
+        editingId = null;
+        form.reset();
+        form.classList.remove("visible");
+      };
+
+      document.getElementById("new-client").addEventListener("click", () => {
+        editingId = null;
+        form.reset();
+        form.classList.add("visible");
+        document.getElementById("nombre").focus();
+      });
+
+      document.getElementById("cancel-form").addEventListener("click", resetForm);
+      search.addEventListener("input", renderClients);
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const data = Object.fromEntries(new FormData(form));
+        const url = editingId ? `/api/clientes/${editingId}` : "/api/clientes";
+        const method = editingId ? "PUT" : "POST";
+
+        try {
+          const response = await fetch(url, {
+            method,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          });
+          if (!response.ok) throw new Error();
+          resetForm();
+          await loadClients();
+        } catch (error) {
+          window.alert("No se pudo guardar el cliente.");
+        }
+      });
+
+      clientList.addEventListener("click", async (event) => {
+        const editButton = event.target.closest("[data-edit]");
+        const deleteButton = event.target.closest("[data-delete]");
+
+        if (editButton) {
+          const client = clients.find((item) => String(item.id) === editButton.dataset.edit);
+          if (!client) return;
+          editingId = client.id;
+          Object.entries(client).forEach(([key, value]) => {
+            const input = form.elements[key];
+            if (input) input.value = value;
+          });
+          form.classList.add("visible");
+          document.getElementById("nombre").focus();
+        }
+
+        if (deleteButton && window.confirm("¿Eliminar este cliente?")) {
+          try {
+            const response = await fetch(`/api/clientes/${deleteButton.dataset.delete}`, { method: "DELETE" });
+            if (!response.ok) throw new Error();
+            await loadClients();
+          } catch (error) {
+            window.alert("No se pudo eliminar el cliente.");
+          }
+        }
+      });
+
+      loadClients();
+    </script>
   </body>
 </html>

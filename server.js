@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const authRoutes = require("./routes/auth.routes");
+const clientesRoutes = require("./routes/clientes.routes");
 
 const app = express();
 const port = 3000;
@@ -13,10 +14,11 @@ app.get("/", (req, res) => {
 });
 
 app.use("/auth", authRoutes);
+app.use("/api/clientes", clientesRoutes);
 
 app.get("/dashboard", (req, res) => {
-    res.sendFile(path.join(__dirname, "views", "dashboard.html"))
-})
+  res.sendFile(path.join(__dirname, "views", "dashboard.html"));
+});
 
 app.listen(port, () => {
   console.log(`Servidor local corriendo en http://localhost:${port}`);
