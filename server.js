@@ -22,6 +22,10 @@ app.get("/clientes", (req, res) => {
   res.sendFile(path.join(__dirname, "views", "clientes.html"));
 });
 
+app.get("/deudas", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "deudas.html"));
+});
+
 app.listen(port, () => {
   console.log(`Servidor local corriendo en http://localhost:${port}`);
 });
