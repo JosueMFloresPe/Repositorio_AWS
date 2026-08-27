@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Deudas | Módulo de Cobros</title>
+    <!-- Agrega la imagen del icono de la pestaña AQUI -->
+    <link rel="icon" href="" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -11,7 +13,6 @@
       rel="stylesheet"
     />
     <style>
-      /* Se mantienen exactamente tus mismos estilos */
       :root {
         --ink: #172033;
         --muted: #687386;
@@ -59,18 +60,15 @@
         align-items: center;
         gap: 15px;
       }
-      .header-mark {
-        display: grid;
+      .header-logo {
+        display: block;
         width: 42px;
         height: 42px;
         flex: 0 0 42px;
-        place-items: center;
         border-radius: 11px;
-        color: var(--navy);
-        background: var(--orange);
-        font-family: "Space Grotesk", sans-serif;
-        font-size: 20px;
-        font-weight: 700;
+        object-fit: cover;
+        background-color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
       }
       .header h1 {
         margin: 0;
@@ -342,7 +340,8 @@
     <main class="page">
       <div class="header">
         <div class="header-copy">
-          <div class="header-mark">$</div>
+          <!-- Agrega la imagen del logo AQUI -->
+          <img src="" alt="Logo S3" class="header-logo" />
           <div>
             <h1>Sistema de Gestión ERP</h1>
             <p>Módulo de cobros</p>
