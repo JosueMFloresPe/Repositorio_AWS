@@ -3,7 +3,7 @@ const pool = require("../config/db");
 const listarClientes = async (req, res) => {
   try {
     const resultado = await pool.query(
-      "SELECT * FROM clientes ORDER BY id ASC",
+      "SELECT * FROM clients ORDER BY cl_id ASC",
     );
     res.json(resultado.rows);
   } catch (error) {
@@ -16,9 +16,10 @@ const listarClientes = async (req, res) => {
 
 const obtenerCliente = async (req, res) => {
   try {
-    const resultado = await pool.query("SELECT * FROM clientes WHERE id = $1", [
-      req.params.id,
-    ]);
+    const resultado = await pool.query(
+      "SELECT * FROM clients WHERE cl_id = $1",
+      [req.params.id],
+    );
 
     if (resultado.rows.length === 0) {
       return res.status(404).json({ error: "Cliente no encontrado" });
@@ -32,16 +33,16 @@ const obtenerCliente = async (req, res) => {
 };
 
 const crearCliente = async (req, res) => {
-  const { nombre, email, telefono, direccion } = req.body;
+  const { cl_name, cl_email, cl_phone, cl_address } = req.body;
 
-  if (!nombre || !email || !telefono || !direccion) {
+  if (!cl_name || !cl_email || !cl_phone || !cl_address) {
     return res.status(400).json({ error: "Todos los campos son obligatorios" });
   }
 
   try {
     const resultado = await pool.query(
-      "INSERT INTO clientes (nombre, email, telefono, direccion) VALUES ($1, $2, $3, $4) RETURNING *",
-      [nombre.trim(), email.trim(), telefono.trim(), direccion.trim()],
+      "INSERT INTO clients (cl_name, cl_email, cl_phone, cl_address) VALUES ($1, $2, $3, $4) RETURNING *",
+      [cl_name.trim(), cl_email.trim(), cl_phone.trim(), cl_address.trim()],
     );
     res.status(201).json(resultado.rows[0]);
   } catch (error) {
@@ -51,16 +52,22 @@ const crearCliente = async (req, res) => {
 };
 
 const actualizarCliente = async (req, res) => {
-  const { nombre, email, telefono, direccion } = req.body;
+  const { cl_name, cl_email, cl_phone, cl_address } = req.body;
 
-  if (!nombre || !email || !telefono || !direccion) {
+  if (!cl_name || !cl_email || !cl_phone || !cl_address) {
     return res.status(400).json({ error: "Todos los campos son obligatorios" });
   }
 
   try {
     const resultado = await pool.query(
-      "UPDATE clientes SET nombre = $1, email = $2, telefono = $3, direccion = $4 WHERE id = $5 RETURNING *",
-      [nombre.trim(), email.trim(), telefono.trim(), direccion.trim(), req.params.id],
+      "UPDATE clients SET cl_name = $1, cl_email = $2, cl_phone = $3, cl_address = $4 WHERE cl_id = $5 RETURNING *",
+      [
+        cl_name.trim(),
+        cl_email.trim(),
+        cl_phone.trim(),
+        cl_address.trim(),
+        req.params.id,
+      ],
     );
 
     if (resultado.rows.length === 0) {
@@ -77,7 +84,7 @@ const actualizarCliente = async (req, res) => {
 const eliminarCliente = async (req, res) => {
   try {
     const resultado = await pool.query(
-      "DELETE FROM clientes WHERE id = $1 RETURNING id",
+      "DELETE FROM clients WHERE cl_id = $1 RETURNING cl_id",
       [req.params.id],
     );
 
