@@ -4,14 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard | Módulo de Cobros</title>
-    <!-- Agrega la imagen del icono de la pestaña AQUI -->
     <link rel="icon" href="" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
     <style>
       :root {
         --ink: #172033;
@@ -22,11 +18,7 @@
         --green: #18794e;
         --red: #b6413c;
       }
-
-      * {
-        box-sizing: border-box;
-      }
-
+      * { box-sizing: border-box; }
       body {
         min-height: 100vh;
         margin: 0;
@@ -34,350 +26,82 @@
         color: var(--ink);
         font-family: "DM Sans", sans-serif;
         background: #eef2f4;
-        background-image:
-          radial-gradient(#c9d4d7 1px, transparent 1px),
-          linear-gradient(135deg, #f8faf9, #e7edef);
-        background-size:
-          22px 22px,
-          100% 100%;
+        background-image: radial-gradient(#c9d4d7 1px, transparent 1px), linear-gradient(135deg, #f8faf9, #e7edef);
+        background-size: 22px 22px, 100% 100%;
       }
-
-      .page {
-        width: min(100%, 1120px);
-        margin: 0 auto;
-      }
-
+      .page { width: min(100%, 1120px); margin: 0 auto; }
       .header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 24px;
-        padding: 25px 30px;
-        border-radius: 16px;
-        color: white;
-        background: var(--navy);
-        box-shadow: 0 16px 30px rgba(23, 43, 58, 0.18);
+        display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 25px 30px;
+        border-radius: 16px; color: white; background: var(--navy); box-shadow: 0 16px 30px rgba(23, 43, 58, 0.18);
         animation: appear 500ms ease-out both;
       }
-
-      .header-copy {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-      }
-
+      .header-copy { display: flex; align-items: center; gap: 15px; }
       .header-logo {
-        display: block;
-        width: 42px;
-        height: 42px;
-        flex: 0 0 42px;
-        border-radius: 11px;
-        object-fit: cover;
-        background-color: white;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        display: block; width: 42px; height: 42px; flex: 0 0 42px; border-radius: 11px; object-fit: cover;
+        background-color: white; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
       }
-
-      .header h1 {
-        margin: 0;
-        font-family: "Space Grotesk", sans-serif;
-        font-size: 21px;
-      }
-
-      .header p {
-        margin: 4px 0 0;
-        color: #b8c4cb;
-        font-size: 13px;
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 15px;
-        align-items: center;
-      }
-
+      .header h1 { margin: 0; font-family: "Space Grotesk", sans-serif; font-size: 21px; }
+      .header p { margin: 4px 0 0; color: #b8c4cb; font-size: 13px; }
+      .nav-links { display: flex; gap: 15px; align-items: center; }
       .nav-button {
-        padding: 11px 16px;
-        border-radius: 8px;
-        color: white;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: 700;
-        transition: background 180ms ease;
+        padding: 11px 16px; border-radius: 8px; color: white; text-decoration: none;
+        font-size: 14px; font-weight: 700; transition: background 180ms ease;
       }
-
-      .nav-button.active {
-        background: rgba(255, 255, 255, 0.1);
-      }
-
+      .nav-button.active { background: rgba(255, 255, 255, 0.1); }
       .logout {
-        padding: 11px 16px;
-        border-radius: 8px;
-        color: white;
-        text-decoration: none;
-        background: var(--orange);
-        font-size: 14px;
-        font-weight: 700;
-        transition:
-          background 180ms ease,
-          transform 180ms ease;
+        padding: 11px 16px; border-radius: 8px; color: white; text-decoration: none; background: var(--orange);
+        font-size: 14px; font-weight: 700; transition: background 180ms ease, transform 180ms ease;
       }
-
-      .logout:hover {
-        background: #d87517;
-        transform: translateY(-1px);
-      }
-
+      .logout:hover { background: #d87517; transform: translateY(-1px); }
       .card {
-        margin-top: 24px;
-        padding: 30px;
-        border: 1px solid rgba(255, 255, 255, 0.9);
-        border-radius: 16px;
-        background: rgba(255, 255, 255, 0.94);
-        box-shadow: 0 18px 45px rgba(29, 47, 61, 0.1);
+        margin-top: 24px; padding: 30px; border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 16px;
+        background: rgba(255, 255, 255, 0.94); box-shadow: 0 18px 45px rgba(29, 47, 61, 0.1);
         animation: appear 500ms 100ms ease-out both;
       }
-
-      .card h2 {
-        margin: 0;
-        font-family: "Space Grotesk", sans-serif;
-        font-size: 24px;
-      }
-
-      .card > p {
-        margin: 7px 0 24px;
-        color: var(--muted);
-        font-size: 14px;
-      }
-
-      .toolbar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        margin-bottom: 18px;
-      }
-
+      .card h2 { margin: 0; font-family: "Space Grotesk", sans-serif; font-size: 24px; }
+      .card > p { margin: 7px 0 24px; color: var(--muted); font-size: 14px; }
+      .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
       .search {
-        width: min(100%, 300px);
-        padding: 11px 14px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        outline: none;
-        color: var(--ink);
-        background: #fbfcfd;
-        font: inherit;
+        width: min(100%, 300px); padding: 11px 14px; border: 1px solid var(--line); border-radius: 8px;
+        outline: none; color: var(--ink); background: #fbfcfd; font: inherit;
       }
-
-      .search:focus,
-      .field input:focus {
-        border-color: var(--orange);
-        box-shadow: 0 0 0 4px rgba(242, 140, 40, 0.14);
+      .search:focus, .field input:focus { border-color: var(--orange); box-shadow: 0 0 0 4px rgba(242, 140, 40, 0.14); }
+      .primary-button, .secondary-button, .action-button {
+        border: 0; border-radius: 8px; cursor: pointer; font: 700 14px "DM Sans", sans-serif;
       }
-
-      .primary-button,
-      .secondary-button,
-      .action-button {
-        border: 0;
-        border-radius: 8px;
-        cursor: pointer;
-        font:
-          700 14px "DM Sans",
-          sans-serif;
-      }
-
-      .primary-button {
-        padding: 12px 18px;
-        color: white;
-        background: var(--orange);
-      }
-
-      .secondary-button {
-        padding: 12px 18px;
-        color: var(--ink);
-        background: #e9eef0;
-      }
-
+      .primary-button { padding: 12px 18px; color: white; background: var(--orange); }
+      .secondary-button { padding: 12px 18px; color: var(--ink); background: #e9eef0; }
       .form-panel {
-        display: none;
-        margin-bottom: 24px;
-        padding: 20px;
-        border: 1px solid var(--line);
-        border-radius: 10px;
-        background: #f8faf9;
+        display: none; margin-bottom: 24px; padding: 20px; border: 1px solid var(--line);
+        border-radius: 10px; background: #f8faf9;
       }
-
-      .form-panel.visible {
-        display: block;
-      }
-
-      .form-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-      }
-
-      .field label {
-        display: block;
-        margin-bottom: 6px;
-        color: #303b4d;
-        font-size: 13px;
-        font-weight: 700;
-      }
-
+      .form-panel.visible { display: block; }
+      .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+      .field label { display: block; margin-bottom: 6px; color: #303b4d; font-size: 13px; font-weight: 700; }
       .field input {
-        width: 100%;
-        padding: 11px 12px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        outline: none;
-        font: inherit;
+        width: 100%; padding: 11px 12px; border: 1px solid var(--line); border-radius: 8px; outline: none; font: inherit;
       }
-
-      .form-actions {
-        display: flex;
-        gap: 10px;
-        margin-top: 18px;
-      }
-
-      .action-button {
-        padding: 8px 11px;
-        color: var(--ink);
-        background: #e9eef0;
-      }
-
-      .action-button.delete {
-        color: var(--red);
-        background: #f9e9e8;
-      }
-
-      .empty-state,
-      .message {
-        padding: 24px;
-        color: var(--muted);
-        text-align: center;
-      }
-
-      .message.error {
-        color: var(--red);
-      }
-
-      .table-wrapper {
-        overflow-x: auto;
-        border: 1px solid var(--line);
-        border-radius: 10px;
-      }
-
-      table {
-        width: 100%;
-        min-width: 580px;
-        border-collapse: collapse;
-      }
-
-      th,
-      td {
-        padding: 16px 18px;
-        text-align: left;
-        border-bottom: 1px solid var(--line);
-        font-size: 14px;
-      }
-
-      th {
-        color: #667385;
-        background: #f5f7f8;
-        font-size: 12px;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-      }
-
-      tbody tr:last-child td {
-        border-bottom: 0;
-      }
-
-      tbody tr:hover {
-        background: #fbfcfc;
-      }
-
-      .status {
-        display: inline-flex;
-        align-items: center;
-        gap: 7px;
-        font-weight: 700;
-      }
-
-      .status::before {
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        content: "";
-      }
-
-      .status.paid {
-        color: var(--green);
-      }
-
-      .status.paid::before {
-        background: var(--green);
-      }
-
-      .status.pending {
-        color: var(--red);
-      }
-
-      .status.pending::before {
-        background: var(--red);
-      }
-
-      @keyframes appear {
-        from {
-          opacity: 0;
-          transform: translateY(12px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
+      .form-actions { display: flex; gap: 10px; margin-top: 18px; }
+      .action-button { padding: 8px 11px; color: var(--ink); background: #e9eef0; }
+      .action-button.delete { color: var(--red); background: #f9e9e8; }
+      .empty-state, .message { padding: 24px; color: var(--muted); text-align: center; }
+      .message.error { color: var(--red); }
+      .table-wrapper { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
+      table { width: 100%; min-width: 580px; border-collapse: collapse; }
+      th, td { padding: 16px 18px; text-align: left; border-bottom: 1px solid var(--line); font-size: 14px; }
+      th { color: #667385; background: #f5f7f8; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; }
+      tbody tr:last-child td { border-bottom: 0; }
+      tbody tr:hover { background: #fbfcfc; }
+      @keyframes appear { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
       @media (max-width: 640px) {
-        body {
-          padding: 16px;
-        }
-
-        .header {
-          align-items: flex-start;
-          flex-direction: column;
-          padding: 22px;
-        }
-
-        .nav-links {
-          width: 100%;
-          justify-content: space-between;
-        }
-
-        .logout {
-          width: 100%;
-          text-align: center;
-        }
-
-        .card {
-          padding: 22px 18px;
-        }
-
-        .toolbar,
-        .form-actions {
-          align-items: stretch;
-          flex-direction: column;
-        }
-
-        .search,
-        .primary-button,
-        .secondary-button {
-          width: 100%;
-        }
-
-        .form-grid {
-          grid-template-columns: 1fr;
-        }
+        body { padding: 16px; }
+        .header { align-items: flex-start; flex-direction: column; padding: 22px; }
+        .nav-links { width: 100%; justify-content: space-between; }
+        .logout { width: 100%; text-align: center; }
+        .card { padding: 22px 18px; }
+        .toolbar, .form-actions { align-items: stretch; flex-direction: column; }
+        .search, .primary-button, .secondary-button { width: 100%; }
+        .form-grid { grid-template-columns: 1fr; }
       }
     </style>
   </head>
@@ -385,7 +109,6 @@
     <main class="page">
       <div class="header">
         <div class="header-copy">
-          <!-- Agrega la imagen del logo AQUI -->
           <img src="" alt="Logo S3" class="header-logo" />
           <div>
             <h1>Sistema de Gestión ERP</h1>
@@ -405,9 +128,7 @@
             <h2>Directorio de Clientes</h2>
             <p>Administra los clientes registrados en el sistema.</p>
           </div>
-          <button class="primary-button" id="new-client" type="button">
-            + Nuevo cliente
-          </button>
+          <button class="primary-button" id="new-client" type="button">+ Nuevo cliente</button>
         </div>
 
         <form class="form-panel" id="client-form">
@@ -428,24 +149,19 @@
               <label for="cl_address">Dirección</label>
               <input id="cl_address" name="cl_address" required />
             </div>
+            <div class="field">
+              <label for="cl_photo">Foto de Perfil</label>
+              <input id="cl_photo" name="cl_photo" type="file" accept="image/*" />
+            </div>
           </div>
           <div class="form-actions">
-            <button class="primary-button" type="submit">
-              Guardar cliente
-            </button>
-            <button class="secondary-button" id="cancel-form" type="button">
-              Cancelar
-            </button>
+            <button class="primary-button" type="submit">Guardar cliente</button>
+            <button class="secondary-button" id="cancel-form" type="button">Cancelar</button>
           </div>
         </form>
 
         <div class="toolbar">
-          <input
-            class="search"
-            id="search"
-            type="search"
-            placeholder="Buscar cliente..."
-          />
+          <input class="search" id="search" type="search" placeholder="Buscar cliente..." />
         </div>
 
         <div class="table-wrapper">
@@ -453,6 +169,7 @@
             <thead>
               <tr>
                 <th>ID</th>
+                <th>Foto</th>
                 <th>Cliente</th>
                 <th>Correo</th>
                 <th>Teléfono</th>
@@ -462,7 +179,7 @@
             </thead>
             <tbody id="client-list">
               <tr>
-                <td class="message" colspan="6">Cargando clientes...</td>
+                <td class="message" colspan="7">Cargando clientes...</td>
               </tr>
             </tbody>
           </table>
@@ -479,29 +196,19 @@
       const escapeHtml = (value) =>
         String(value ?? "").replace(
           /[&<>'"]/g,
-          (character) =>
-            ({
-              "&": "&amp;",
-              "<": "&lt;",
-              ">": "&gt;",
-              "'": "&#39;",
-              '"': "&quot;",
-            })[character],
+          (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[character],
         );
 
       const showMessage = (text, error = false) => {
-        clientList.innerHTML = `<tr><td class="message${error ? " error" : ""}" colspan="6">${text}</td></tr>`;
+        clientList.innerHTML = `<tr><td class="message${error ? " error" : ""}" colspan="7">${text}</td></tr>`;
       };
 
       const renderClients = () => {
         const term = search.value.toLowerCase();
         const filtered = clients.filter((client) =>
-          [
-            client.cl_name,
-            client.cl_email,
-            client.cl_phone,
-            client.cl_address,
-          ].some((value) => String(value).toLowerCase().includes(term)),
+          [client.cl_name, client.cl_email, client.cl_phone, client.cl_address].some((value) =>
+            String(value).toLowerCase().includes(term)
+          ),
         );
 
         if (filtered.length === 0) {
@@ -514,6 +221,9 @@
             (client) => `
           <tr>
             <td>${escapeHtml(client.cl_id)}</td>
+            <td>
+              ${client.cl_photo ? `<img src="${client.cl_photo}" width="40" height="40" style="border-radius: 50%; object-fit: cover;">` : '-'}
+            </td>
             <td>${escapeHtml(client.cl_name)}</td>
             <td>${escapeHtml(client.cl_email)}</td>
             <td>${escapeHtml(client.cl_phone)}</td>
@@ -535,10 +245,7 @@
           clients = await response.json();
           renderClients();
         } catch (error) {
-          showMessage(
-            "No se pudieron cargar los clientes. Revisa la conexión con PostgreSQL.",
-            true,
-          );
+          showMessage("No se pudieron cargar los clientes. Revisa la conexión.", true);
         }
       };
 
@@ -555,22 +262,19 @@
         document.getElementById("cl_name").focus();
       });
 
-      document
-        .getElementById("cancel-form")
-        .addEventListener("click", resetForm);
+      document.getElementById("cancel-form").addEventListener("click", resetForm);
       search.addEventListener("input", renderClients);
 
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
-        const data = Object.fromEntries(new FormData(form));
+        const formData = new FormData(form);
         const url = editingId ? `/api/clientes/${editingId}` : "/api/clientes";
         const method = editingId ? "PUT" : "POST";
 
         try {
           const response = await fetch(url, {
             method,
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
+            body: formData,
           });
           if (!response.ok) throw new Error();
           resetForm();
@@ -585,14 +289,12 @@
         const deleteButton = event.target.closest("[data-delete]");
 
         if (editButton) {
-          const client = clients.find(
-            (item) => String(item.cl_id) === editButton.dataset.edit,
-          );
+          const client = clients.find((item) => String(item.cl_id) === editButton.dataset.edit);
           if (!client) return;
           editingId = client.cl_id;
           Object.entries(client).forEach(([key, value]) => {
             const input = form.elements[key];
-            if (input) input.value = value;
+            if (input && input.type !== 'file') input.value = value;
           });
           form.classList.add("visible");
           document.getElementById("cl_name").focus();
@@ -600,10 +302,7 @@
 
         if (deleteButton && window.confirm("¿Eliminar este cliente?")) {
           try {
-            const response = await fetch(
-              `/api/clientes/${deleteButton.dataset.delete}`,
-              { method: "DELETE" },
-            );
+            const response = await fetch(`/api/clientes/${deleteButton.dataset.delete}`, { method: "DELETE" });
             if (!response.ok) throw new Error();
             await loadClients();
           } catch (error) {
